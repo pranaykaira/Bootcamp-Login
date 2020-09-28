@@ -14,7 +14,7 @@ public interface LoginDao extends JpaRepository<Customer, String>{
 	@Query(value="select * from customer where user_password=?1",nativeQuery=true) //Retreive details of customer using userPassword
 	List<Customer> checkforPassword(String userPassword);
 	
-	@Query(value="select * from customer where user_name=?1",nativeQuery=true) //Retreive details of customer using userPassword
-	List<Customer> checkforUsername(String userName);	 
+	@Query(value="select * from customer where user_email=?1",nativeQuery=true) //Retreive details of customer using userPassword
+	List<Customer> checkforUseremail(String userEmail);	 
 
 }
