@@ -1,0 +1,84 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <style>
+         body{
+            background-color: darkgray;
+            font-family: sans-serif;
+            height: 45px;
+            
+             }
+        
+        .loginbox{  width: 320px;
+            height: 280px;
+            background: #000;
+            color: #fff;
+            top:35%;
+            left:40%;
+              box-sizing: border-box;
+            position:absolute;
+            padding: 40px 30px;
+            opacity:.7;
+                 }
+        h1{    
+            padding: 0 0 20px;
+            text-align: center;
+            font-size: 30px;
+            font-family:Times New Roman;
+            color: black;
+          }    
+        .loginbox p{  margin:0;
+            padding: 0;
+            font-weight:bold;
+                   }
+        .loginbox input{width: 100%;
+            margin-bottom:20px;
+                       }
+        .loginbox input[type="email"], input[type="password"]{
+            border: none;
+            border-bottom: 1px solid #fff;
+            background: transparent;
+            outline:none;
+            height:40px;
+            color:#fff;
+            font-size:16px;
+                }
+   
+  </style>  
+  </head>
+  <body>
+    <h1><b>Login here</b></h1>
+  <div class="row justify-content-center align-items-center">
+  
+  <form (click)="loginform.form.valid&&login(userEmail,userPassword)" #loginform="ngForm">
+    <div class="loginbox">
+    <div class="form-group">
+      <label for="userEmail">Email:</label>
+      <input type="email" [(ngModel)]="userEmail" pattern=".+@+.+.com" #userEmailRef="ngModel" placeholder="abc@email.com" name="email" class="form-control" id="email" required>
+      <div *ngIf='userEmailRef.errors && userEmailRef.touched' class="alert alert-danger">
+        <div [hidden]='!userEmailRef.errors.required'style="font-size:12px;">Provide email Id</div>
+        <div *ngIf='userEmailRef.errors?.pattern' class="alert alert-danger"style="font-size:12px" >Incorrect email pattern</div>
+  
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="userPassword">Password:</label>
+      <input type="password" [(ngModel)]="userPassword" #userPasswordRef="ngModel" placeholder="Enter Password" minlength=8 name="userPassword" class="form-control" id="password" required>
+      <div *ngIf='userPasswordRef.errors && userPasswordRef.touched' class="alert alert-danger">
+        <div [hidden]='!userPasswordRef.errors.required'style="font-size:12px;">Provide user password</div>
+        <div *ngIf='userPasswordRef.errors.minlength' style="font-size:12px;">User password should have length of minimum 8 characters</div> 
+        <div *ngIf='userPasswordRef.errors.maxlength' style="font-size:12px;">User password length should not exceed 30 characters</div> 
+  </div>
+    </div>
+    <div class=" row justify-content-center align-items-center">
+    <button class="btn btn-success" [disabled]="loginform.invalid">Login</button>
+  </div><br><br>
+  <h5><p style="color:black;font-family: 'Times New Roman', Times, serif;"> {{result}}</p></h5>
+  
+  </div>
+  
+  </form>
+  </div>
+  
+    </body>
+  
